@@ -1,6 +1,6 @@
 package com.springapp.service;
 
-import com.springapp.model.Stock;
+import com.springapp.model.StockEntity;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,8 +10,8 @@ import com.springapp.model.Stock;
  * To change this template use File | Settings | File Templates.
  */
 public interface StockService {
-    void save(Stock stock);
-    void update(Stock stock);
-    void delete(Stock stock);
-    Stock findByStockCode(String stockCode);
+    void save(StockEntity stock);
+    void update(StockEntity stock);
+    void delete(StockEntity stock);
+    StockEntity findByStockCode(String stockCode);
 }

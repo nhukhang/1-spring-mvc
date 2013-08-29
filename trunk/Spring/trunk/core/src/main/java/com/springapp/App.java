@@ -1,6 +1,6 @@
 package com.springapp;
 
-import com.springapp.model.Stock;
+import com.springapp.model.StockEntity;
 import com.springapp.service.StockService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,13 +17,13 @@ public class App {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext-bean.xml");
         StockService stockService = (StockService)applicationContext.getBean("stockService");
 
-        /*Stock stock = new Stock();
+        StockEntity stock = new StockEntity();
         stock.setStockCode("7668");
         stock.setStockName("HAIO");
         stockService.save(stock);
-          */
+
         /** select **/
-        Stock stock2 = stockService.findByStockCode("7668");
+        StockEntity stock2 = stockService.findByStockCode("7668");
         System.out.println(stock2);
 
         /** update **/

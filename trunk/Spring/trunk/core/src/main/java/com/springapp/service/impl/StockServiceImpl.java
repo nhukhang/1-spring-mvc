@@ -1,9 +1,8 @@
 package com.springapp.service.impl;
 
-import com.springapp.dao.CustomHibernateDaoSupport;
-import com.springapp.dao.StockDAO;
-import com.springapp.model.Stock;
+import com.springapp.model.StockEntity;
 import com.springapp.service.StockService;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,27 +15,33 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service("stockService")
-public class StockServiceImpl extends CustomHibernateDaoSupport implements StockService {
+public class StockServiceImpl implements StockService {
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
+
+    private HibernateTemplate hibernateTemplate;
 
     @Override
-    public void save(Stock stock) {
-        this.getHibernateTemplate().save(stock);
+    public void save(StockEntity stock) {
+        this.hibernateTemplate.save(stock);
     }
 
     @Override
-    public void update(Stock stock) {
-        this.getHibernateTemplate().update(stock);
+    public void update(StockEntity stock) {
+        this.hibernateTemplate.update(stock);
     }
 
     @Override
-    public void delete(Stock stock) {
-        this.getHibernateTemplate().delete(stock);
+    public void delete(StockEntity stock) {
+        this.hibernateTemplate.delete(stock);
     }
 
     @Override
-    public Stock findByStockCode(String stockCode) {
-        StringBuffer stringBuffer = new StringBuffer("from Stock where stockCode = ?");
-        List list = this.getHibernateTemplate().find(stringBuffer.toString(), stockCode);
-        return (Stock)list.get(0);
+    public StockEntity findByStockCode(String stockCode) {
+        StringBuffer stringBuffer = new StringBuffer("from StockEntity where stockCode = ?");
+        List list = this.hibernateTemplate.find(stringBuffer.toString(), 0, stockCode);
+        return (StockEntity)list.get(0);
     }
 }
