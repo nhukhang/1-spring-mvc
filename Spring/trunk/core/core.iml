@@ -5,9 +5,18 @@
       <configuration>
         <datasource-map>
           <unit-entry name="SessionFactory.xml" value="10c34ab8-73ae-4ed3-a674-0189d6d0a963" />
+          <unit-entry name="mySessionFactory" value="dataSource" />
         </datasource-map>
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources" />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/SessionFactory.xml" />
+      </configuration>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-resources.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-service.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
