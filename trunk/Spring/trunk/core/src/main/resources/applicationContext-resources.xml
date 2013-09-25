@@ -36,7 +36,4 @@
         <property name="sessionFactory" ref="mySessionFactory"/>
     </bean>
 
-    <bean id="stockService" class="com.springapp.service.impl.StockServiceImpl">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
-    </bean>
 </beans>

@@ -69,4 +69,9 @@ public class StockEntity {
         result = 31 * result + (stockName != null ? stockName.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "[stockId=" + stockId + ", stockCode = " + stockCode + ", stockName = " + stockName + "]";
+    }
 }

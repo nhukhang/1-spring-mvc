@@ -24,7 +24,7 @@ public class App {
 
         /** select **/
         StockEntity stock2 = stockService.findByStockCode("7668");
-        System.out.println(stock2);
+        System.out.println(stock2.toString());
 
         /** update **/
         stock2.setStockName("HAIO-1");
@@ -33,6 +33,6 @@ public class App {
         /** delete **/
         stockService.delete(stock2);
 
-        System.out.println("Done");
+        System.out.println("**********  Done  ***********");
     }
 }

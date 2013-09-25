@@ -41,7 +41,7 @@ public class StockServiceImpl implements StockService {
     @Override
     public StockEntity findByStockCode(String stockCode) {
         StringBuffer stringBuffer = new StringBuffer("from StockEntity where stockCode = ?");
-        List list = this.hibernateTemplate.find(stringBuffer.toString(), 0, stockCode);
+        List list = this.hibernateTemplate.find(stringBuffer.toString(), stockCode);
         return (StockEntity)list.get(0);
     }
 }
