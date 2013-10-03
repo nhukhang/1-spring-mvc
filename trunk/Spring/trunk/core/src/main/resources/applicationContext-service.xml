@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
         <bean id="stockService" class="com.springapp.service.impl.StockServiceImpl">
-            <property name="hibernateTemplate" ref="hibernateTemplate"/>
+            <property name="stockDAO" ref="stockDAO"/>
         </bean>
 </beans>

@@ -1,8 +1,10 @@
 package com.springapp.service.impl;
 
+import com.springapp.dao.StockDAO;
 import com.springapp.model.StockEntity;
 import com.springapp.service.StockService;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,31 +19,29 @@ import java.util.List;
 @Service("stockService")
 public class StockServiceImpl implements StockService {
 
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
+    public void setStockDAO(StockDAO stockDAO) {
+        this.stockDAO = stockDAO;
     }
 
-    private HibernateTemplate hibernateTemplate;
+    private StockDAO stockDAO;
 
     @Override
     public void save(StockEntity stock) {
-        this.hibernateTemplate.save(stock);
+        this.stockDAO.save(stock);
     }
 
     @Override
     public void update(StockEntity stock) {
-        this.hibernateTemplate.update(stock);
+        this.stockDAO.update(stock);
     }
 
     @Override
     public void delete(StockEntity stock) {
-        this.hibernateTemplate.delete(stock);
+        this.stockDAO.delete(stock);
     }
 
     @Override
     public StockEntity findByStockCode(String stockCode) {
-        StringBuffer stringBuffer = new StringBuffer("from StockEntity where stockCode = ?");
-        List list = this.hibernateTemplate.find(stringBuffer.toString(), stockCode);
-        return (StockEntity)list.get(0);
+        return this.stockDAO.findByStockCode(stockCode);
     }
 }
