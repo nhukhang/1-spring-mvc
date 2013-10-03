@@ -31,7 +31,7 @@ public class StockHibernate extends CustomHibernateDaoSupport implements StockDA
 
     @Override
     public StockEntity findByStockCode(String stockCode) {
-        StringBuffer stringBuffer = new StringBuffer("from Stock where stockCode = ?");
+        StringBuffer stringBuffer = new StringBuffer("from StockEntity where stockCode = ?");
         List list = this.getHibernateTemplate().find(stringBuffer.toString(), stockCode);
         return (StockEntity)list.get(0);
     }

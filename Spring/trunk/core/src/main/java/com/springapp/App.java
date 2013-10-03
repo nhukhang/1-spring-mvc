@@ -1,5 +1,6 @@
 package com.springapp;
 
+import com.springapp.dao.StockHibernate;
 import com.springapp.model.StockEntity;
 import com.springapp.service.StockService;
 import org.springframework.context.ApplicationContext;
@@ -29,6 +30,9 @@ public class App {
         /** update **/
         stock2.setStockName("HAIO-1");
         stockService.update(stock2);
+
+        StockEntity stock3 = stockService.findByStockCode("7668");
+        System.out.println(stock3.toString());
 
         /** delete **/
         stockService.delete(stock2);

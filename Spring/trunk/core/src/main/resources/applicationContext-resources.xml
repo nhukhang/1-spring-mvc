@@ -36,4 +36,8 @@
         <property name="sessionFactory" ref="mySessionFactory"/>
     </bean>
 
+    <bean id="stockDAO" class="com.springapp.dao.StockHibernate">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+
 </beans>
