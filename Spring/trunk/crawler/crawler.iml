@@ -21,6 +21,10 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context-support:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.activemq:activemq-all:5.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jms:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.7" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.4" level="project" />
   </component>
