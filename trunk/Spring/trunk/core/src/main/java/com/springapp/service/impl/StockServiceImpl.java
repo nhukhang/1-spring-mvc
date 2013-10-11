@@ -3,11 +3,7 @@ package com.springapp.service.impl;
 import com.springapp.dao.StockDAO;
 import com.springapp.model.StockEntity;
 import com.springapp.service.StockService;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Service("stockService")
-public class StockServiceImpl implements StockService {
+public class StockServiceImpl implements StockService{
 
     public void setStockDAO(StockDAO stockDAO) {
         this.stockDAO = stockDAO;
