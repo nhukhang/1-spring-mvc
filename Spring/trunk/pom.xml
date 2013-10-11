@@ -11,11 +11,13 @@
     <modules>
         <module>core</module>
         <module>web</module>
-        <module>app</module>
+        <module>crawler</module>
+        <module>common</module>
     </modules>
 
     <properties>
         <spring.version>3.2.4.RELEASE</spring.version>
+        <crawlerDir>/</crawlerDir>
     </properties>
 
     <build>
@@ -39,6 +41,12 @@
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

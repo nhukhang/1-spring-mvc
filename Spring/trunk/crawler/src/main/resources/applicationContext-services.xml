@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="homeCategory" class="com.springapp.service.impl.CategoryServiceImpl">
+        <property name="url" value="http://www.bbc.co.uk/worldservice/learningenglish/"/>
+    </bean>
+
+</beans>
