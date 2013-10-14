@@ -9,6 +9,7 @@
         </property>
     </bean>
 
+    <!--basic-->
     <bean id="destination" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="orderQueue"/>
     </bean>
@@ -18,5 +19,34 @@
         <property name="defaultDestination" ref="destination" />
     </bean>
 
+    <!--advance-->
+    <bean id="sendingObjMessageTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory">
+            <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+                <property name="targetConnectionFactory">
+                    <ref local="connectionFactory"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
 
+    <bean id="categoryQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <property name="physicalName" value="CATEGORY"/>
+    </bean>
+
+    <bean id="categoryObjProducerMessageService" class="com.springapp.jms.CategoryObjProducerMessageService">
+        <property name="jmsTemplate" ref="sendingObjMessageTemplate"/>
+        <property name="destination" ref="categoryQueue"/>
+    </bean>
+
+    <bean id="categoryObjConsumerMessageService" class="com.springapp.jms.CategoryObjConsumerMessageService"/>
+    <bean id="categoryObjConsumerJmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="destination" ref="categoryQueue" />
+        <property name="messageListener" ref="categoryObjConsumerMessageService" />
+        <property name="sessionTransacted" value="false" />
+        <property name="concurrentConsumers" value="4" />
+        <property name="receiveTimeout" value="2000" />
+        <property name="recoveryInterval" value="1000" />
+    </bean>
 </beans>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.springapp.model.CategoryEntity" table="category" schema="" catalog="learning">
+        <id name="id">
+            <column name="id" sql-type="bigint" length="19" not-null="true"/>
+        </id>
+        <property name="code">
+            <column name="code" sql-type="varchar" length="45" not-null="true"/>
+        </property>
+        <property name="title">
+            <column name="title" sql-type="varchar" length="45" not-null="true"/>
+        </property>
+        <property name="url">
+            <column name="url" sql-type="varchar" length="45" not-null="true"/>
+        </property>
+        <property name="createDate">
+            <column name="createDate" sql-type="datetime" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="categoryByParentId" class="com.springapp.model.CategoryEntity">
+            <column name="parentId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
