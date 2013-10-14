@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
  * Time: 10:28 PM
  * To change this template use File | Settings | File Templates.
  */
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     public void setUrl(String url) {

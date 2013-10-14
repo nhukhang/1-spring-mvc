@@ -6,4 +6,8 @@
         <bean id="stockService" class="com.springapp.service.impl.StockServiceImpl">
             <property name="stockDAO" ref="stockDAO"/>
         </bean>
+
+        <bean id="categoryService" class="com.springapp.service.impl.CategoryServiceImpl">
+            <property name="categoryDAO" ref="categoryDAO"/>
+        </bean>
 </beans>

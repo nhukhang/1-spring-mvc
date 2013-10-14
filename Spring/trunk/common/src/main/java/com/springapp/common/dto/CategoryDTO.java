@@ -27,6 +27,20 @@ public class CategoryDTO implements Serializable {
         this.name = name;
     }
 
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    @Override
+    public String toString(){
+        return this.getName() + ": " + this.getUrl();
+    }
+
     private String url;
     private String name;
+    private Long parentId;
 }
