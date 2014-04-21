@@ -11,4 +11,6 @@ import com.springapp.model.CategoryEntity;
  */
 public interface CategoryDAO {
     public void save(CategoryEntity entity);
+    public void update(CategoryEntity entity);
+    public CategoryEntity findByUniqueUrl(String url, Boolean isRoot);
 }

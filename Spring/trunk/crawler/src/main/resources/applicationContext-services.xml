@@ -5,6 +5,7 @@
 
     <bean name="homeCategory" class="com.springapp.service.impl.CategoryServiceImpl">
         <property name="url" value="http://www.bbc.co.uk/worldservice/learningenglish/"/>
+        <property name="categoryDAO" ref="categoryDAO"/>
     </bean>
 
 </beans>
