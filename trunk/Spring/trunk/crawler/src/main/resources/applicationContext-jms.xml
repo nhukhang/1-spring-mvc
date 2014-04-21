@@ -37,9 +37,12 @@
     <bean id="categoryObjProducerMessageService" class="com.springapp.jms.CategoryObjProducerMessageService">
         <property name="jmsTemplate" ref="sendingObjMessageTemplate"/>
         <property name="destination" ref="categoryQueue"/>
+
     </bean>
 
-    <bean id="categoryObjConsumerMessageService" class="com.springapp.jms.CategoryObjConsumerMessageService"/>
+    <bean id="categoryObjConsumerMessageService" class="com.springapp.jms.CategoryObjConsumerMessageService">
+        <property name="categoryDAO" ref="categoryDAO"/>
+    </bean>
     <bean id="categoryObjConsumerJmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory" />
         <property name="destination" ref="categoryQueue" />

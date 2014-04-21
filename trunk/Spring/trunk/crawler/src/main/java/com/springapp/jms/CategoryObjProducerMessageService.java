@@ -1,6 +1,7 @@
 package com.springapp.jms;
 
 import com.springapp.common.dto.CategoryDTO;
+import com.springapp.dao.CategoryDAO;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
@@ -18,13 +19,14 @@ public class CategoryObjProducerMessageService {
     private JmsTemplate jmsTemplate;
     private Destination destination;
 
+
     public void sendMessage(final CategoryDTO category){
         jmsTemplate.send(destination, new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
                 ObjectMessage objectMessage = session.createObjectMessage();
                 objectMessage.setObject(category);
-                System.out.println("Sent: " + category.toString());
+                //System.out.println("Sent: " + category.toString());
                 return objectMessage;
             }
         });
@@ -37,5 +39,4 @@ public class CategoryObjProducerMessageService {
     public void setDestination(Destination destination) {
         this.destination = destination;
     }
-
 }

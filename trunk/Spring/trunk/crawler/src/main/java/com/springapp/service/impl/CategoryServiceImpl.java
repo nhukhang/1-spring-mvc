@@ -2,11 +2,14 @@ package com.springapp.service.impl;
 
 import com.springapp.common.dto.CategoryDTO;
 import com.springapp.common.utils.Constants;
+import com.springapp.dao.CategoryDAO;
+import com.springapp.model.CategoryEntity;
 import com.springapp.service.CategoryService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,11 +30,15 @@ public class CategoryServiceImpl implements CategoryService {
         this.url = url;
     }
 
-    private String url;
+    public void setCategoryDAO(CategoryDAO categoryDAO) {
+        this.categoryDAO = categoryDAO;
+    }
 
+    private String url;
+    private CategoryDAO categoryDAO;
 
     @Override
-    public List<CategoryDTO> getMainCategory() throws IOException {
+    public List<CategoryDTO> getMainCategories() throws IOException {
         Document doc = null;
         List<CategoryDTO> categories = new ArrayList<CategoryDTO>();
         try{
@@ -45,6 +52,27 @@ public class CategoryServiceImpl implements CategoryService {
             }
         }catch (IOException e){
              throw new IOException("Exception: " + e.getMessage());
+        }
+        return categories;
+    }
+
+    @Override
+    public List<CategoryDTO> getGeneralCategories() throws IOException {
+        Document doc = null;
+        List<CategoryDTO> categories = new ArrayList<CategoryDTO>();
+        try{
+            doc = Jsoup.connect(Constants.GENERAL_PAGE).userAgent(Constants.userAgent).get();
+            Elements links = doc.getElementsByClass("nav-general").get(0).getElementsByClass("level-2").select("a[href]");
+            CategoryEntity entity = categoryDAO.findByUniqueUrl(Constants.GENERAL_PAGE, Boolean.TRUE);
+            for (Element link : links) {
+                CategoryDTO dto = new CategoryDTO();
+                dto.setUrl(link.attr("href"));
+                dto.setName(link.text());
+                dto.setParentId(entity.getId());
+                categories.add(dto);
+            }
+        }catch (IOException e){
+            throw new IOException("Exception: " + e.getMessage());
         }
         return categories;
     }

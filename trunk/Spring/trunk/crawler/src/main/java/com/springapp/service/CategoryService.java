@@ -13,5 +13,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface CategoryService {
-    List<CategoryDTO> getMainCategory() throws IOException;
+    List<CategoryDTO> getMainCategories() throws IOException;
+    List<CategoryDTO> getGeneralCategories() throws IOException;
 }

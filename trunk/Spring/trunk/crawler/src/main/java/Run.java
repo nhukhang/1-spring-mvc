@@ -29,27 +29,12 @@ public class Run {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         CategoryServiceImpl categoryService = (CategoryServiceImpl)context.getBean("homeCategory");
-        JmsTemplate template = (JmsTemplate) context.getBean("jmsTemplate");
-        ActiveMQDestination destination = (ActiveMQDestination) context.getBean("destination");
         CategoryObjProducerMessageService categoryObjProducerMessageService = (CategoryObjProducerMessageService)context.getBean("categoryObjProducerMessageService");
 
         try{
-            List<CategoryDTO> categoryDTOs = categoryService.getMainCategory();
-            System.out.println(categoryDTOs.size());
+            List<CategoryDTO> categoryDTOs = categoryService.getGeneralCategories();//.getMainCategories();
             for(CategoryDTO categoryDTO : categoryDTOs){
-                //template.convertAndSend(destination, categoryDTO.getUrl());
                 categoryObjProducerMessageService.sendMessage(categoryDTO);
-                //Thread.sleep(2000);
-
-                // receiving a message
-                /*Object msg = template.receive(destination);
-                if (msg instanceof TextMessage) {
-                    try {
-                        System.out.println(((TextMessage) msg).getText());
-                    } catch (JMSException e) {
-                        System.out.println(e);
-                    }
-                } */
             }
         }catch (Exception e){
             System.out.print(e.getMessage());
