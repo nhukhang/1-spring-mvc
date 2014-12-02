@@ -1,5 +1,6 @@
 
 import com.springapp.common.dto.CategoryDTO;
+import com.springapp.common.utils.Constants;
 import com.springapp.jms.CategoryObjProducerMessageService;
 import com.springapp.service.impl.CategoryServiceImpl;
 import org.apache.activemq.command.ActiveMQDestination;
@@ -15,6 +16,7 @@ import org.springframework.jms.core.JmsTemplate;
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,20 +28,25 @@ import java.util.List;
  */
 public class Run {
     public static void main(String[] args){
+        /*Run ActiveMQ(/opt/software/activemq) before running*/
+
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         CategoryServiceImpl categoryService = (CategoryServiceImpl)context.getBean("homeCategory");
         CategoryObjProducerMessageService categoryObjProducerMessageService = (CategoryObjProducerMessageService)context.getBean("categoryObjProducerMessageService");
 
         try{
-            List<CategoryDTO> categoryDTOs = categoryService.getGeneralCategories();//.getMainCategories();
+            List<CategoryDTO> categoryDTOs = categoryService.getGeneralCategories();
             for(CategoryDTO categoryDTO : categoryDTOs){
                 categoryObjProducerMessageService.sendMessage(categoryDTO);
             }
+            List<CategoryDTO> categoryDTO1s = categoryService.getLanguageCategories();
+            for(CategoryDTO categoryDTO : categoryDTO1s){
+                categoryObjProducerMessageService.sendMessage(categoryDTO);
+            }
+
         }catch (Exception e){
             System.out.print(e.getMessage());
         }
-
-
     }
 }

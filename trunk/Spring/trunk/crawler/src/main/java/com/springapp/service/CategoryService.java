@@ -15,4 +15,5 @@ import java.util.List;
 public interface CategoryService {
     List<CategoryDTO> getMainCategories() throws IOException;
     List<CategoryDTO> getGeneralCategories() throws IOException;
+    List<CategoryDTO> getLanguageCategories() throws IOException;
 }

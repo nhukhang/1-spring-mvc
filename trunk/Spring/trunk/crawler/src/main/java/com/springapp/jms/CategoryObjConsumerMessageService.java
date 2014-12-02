@@ -29,8 +29,13 @@ public class CategoryObjConsumerMessageService implements MessageListener {
         if(message instanceof ActiveMQObjectMessage){
             try{
                 CategoryDTO categoryDTO = (CategoryDTO) ((ObjectMessage) message).getObject();
-                categoryDAO.save(dto2Entity(categoryDTO));
-                System.out.println("Inserted: " + categoryDTO.toString());
+                CategoryEntity categoryDB = categoryDAO.findByUniqueUrl(categoryDTO.getUrl(), false);
+                if(categoryDB == null){
+                    categoryDAO.save(dto2Entity(categoryDTO));
+                    System.out.println("...inserting: " + categoryDTO.toString());
+                }else{
+                    System.out.println(">>>exists: " + categoryDTO.toString());
+                }
             }catch (JMSException e){
                 System.out.println(e.getMessage());
             }

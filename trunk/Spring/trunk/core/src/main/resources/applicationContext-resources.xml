@@ -31,7 +31,6 @@
         </property>
         <property name="mappingResources">
             <list>
-                <value>hbm/StockEntity.hbm.xml</value>
                 <value>hbm/CategoryEntity.hbm.xml</value>
             </list>
         </property>
@@ -39,10 +38,6 @@
 
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="mySessionFactory"/>
-    </bean>
-
-    <bean id="stockDAO" class="com.springapp.dao.StockHibernate">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
 
     <bean id="categoryDAO" class="com.springapp.dao.CategoryHibernate">
