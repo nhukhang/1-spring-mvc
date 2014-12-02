@@ -12,5 +12,4 @@ public class Constants {
     public static String HOME_PAGE = "http://www.bbc.co.uk/worldservice/learningenglish/";
     public static String GENERAL_PAGE = "http://www.bbc.co.uk/worldservice/learningenglish/general/";
     public static String LANGUAGE_PAGE = "http://www.bbc.co.uk/worldservice/learningenglish/language/";
-
 }

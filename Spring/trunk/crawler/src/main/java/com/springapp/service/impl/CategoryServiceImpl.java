@@ -9,7 +9,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -64,6 +63,27 @@ public class CategoryServiceImpl implements CategoryService {
             doc = Jsoup.connect(Constants.GENERAL_PAGE).userAgent(Constants.userAgent).get();
             Elements links = doc.getElementsByClass("nav-general").get(0).getElementsByClass("level-2").select("a[href]");
             CategoryEntity entity = categoryDAO.findByUniqueUrl(Constants.GENERAL_PAGE, Boolean.TRUE);
+            for (Element link : links) {
+                CategoryDTO dto = new CategoryDTO();
+                dto.setUrl(link.attr("href"));
+                dto.setName(link.text());
+                dto.setParentId(entity.getId());
+                categories.add(dto);
+            }
+        }catch (IOException e){
+            throw new IOException("Exception: " + e.getMessage());
+        }
+        return categories;
+    }
+
+    @Override
+    public List<CategoryDTO> getLanguageCategories() throws IOException {
+        Document doc = null;
+        List<CategoryDTO> categories = new ArrayList<CategoryDTO>();
+        try{
+            doc = Jsoup.connect(Constants.LANGUAGE_PAGE).userAgent(Constants.userAgent).get();
+            Elements links = doc.getElementsByClass("nav-language").get(0).getElementsByClass("level-2").select("a[href]");
+            CategoryEntity entity = categoryDAO.findByUniqueUrl(Constants.LANGUAGE_PAGE, Boolean.TRUE);
             for (Element link : links) {
                 CategoryDTO dto = new CategoryDTO();
                 dto.setUrl(link.attr("href"));
