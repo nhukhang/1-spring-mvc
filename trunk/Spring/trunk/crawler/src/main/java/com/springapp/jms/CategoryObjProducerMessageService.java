@@ -26,7 +26,6 @@ public class CategoryObjProducerMessageService {
             public Message createMessage(Session session) throws JMSException {
                 ObjectMessage objectMessage = session.createObjectMessage();
                 objectMessage.setObject(category);
-                //System.out.println("Sent: " + category.toString());
                 return objectMessage;
             }
         });
